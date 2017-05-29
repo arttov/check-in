@@ -1,0 +1,36 @@
+<div class="block-centered">
+  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Check-in Now</button>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Please enter your name</h4>
+      </div>
+
+      <form action="#" method="POST">
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">New name:</label>
+            <input type="text" class="form-control" id="name" name="name"
+                   required="required"
+                   minlength="2"
+                   maxlength="50">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Checkin" />
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
