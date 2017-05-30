@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -12,6 +12,8 @@ import { GoogleMapComponent } from './google-map/google-map.component';
 import { CheckInModalComponent } from './modals/check-in-modal/check-in-modal.component';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { ControlMessagesComponent } from './control-messages/control-messages.component';
+import { ProjectService } from './project.service';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,12 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     UserListComponent,
     GoogleMapComponent,
     CheckInModalComponent,
+    ControlMessagesComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
     appRouting,
@@ -31,7 +35,9 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
       apiKey: 'AIzaSyCXQuy-ESvHy_6Y2WKb3QCw8GwITh2Fe90'
     })
   ],
-  providers: [],
+  providers: [
+    ProjectService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

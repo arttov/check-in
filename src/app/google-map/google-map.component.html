@@ -7,4 +7,4 @@
 
 </div>
 
-<app-check-in-modal></app-check-in-modal>
+<app-check-in-modal [lat]="lat" [lng]="lng" (onAddData)="onAddData.emit($event)"></app-check-in-modal>

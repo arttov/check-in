@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-google-map',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./google-map.component.css']
 })
 export class GoogleMapComponent implements OnInit {
+  @Output('onAddData') onAddData: EventEmitter<any> = new EventEmitter();
+
   lat = 40.3855031;
   lng = 45.364846;
   zoom = 10;

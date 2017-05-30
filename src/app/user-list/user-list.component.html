@@ -2,3 +2,12 @@
   Recent check-ins near by
 </h2>
 <hr />
+<ul class="list-unstyled">
+  <li *ngFor="let item of data; let i = index">
+    <b>ID: {{item._id}}</b>
+   Name: <a href="#">{{item.name}}</a><br>
+   Lat: {{item.latitude}} <br>
+   Lng: {{item.longitude}} <br>
+   Created: {{item.updated|date:'yyyy-mm-d H:m:s'}}<hr /><br />
+  </li>
+</ul>

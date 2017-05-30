@@ -12,23 +12,29 @@
         <h4 class="modal-title">Please enter your name</h4>
       </div>
 
-      <form action="#" method="POST">
-
+      <form action="#" method="POST" [formGroup]="form" enctype="multipart/form-data" >
+        <fieldset>
         <div class="modal-body">
           <div class="form-group">
             <label for="name">New name:</label>
-            <input type="text" class="form-control" id="name" name="name"
-                   required="required"
-                   minlength="2"
-                   maxlength="50">
+            <input type="text" class="form-control" formControlName="name" id="name" name="name" />
+
+            <app-control-messages [control]="form.controls.name"></app-control-messages>
           </div>
         </div>
 
         <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Checkin" />
+          <button type="button"
+                  class="btn btn-default"
+                  name="submit"
+                  value="Checkin"
+                  (click)="saveUserData(form.value)"
+                  data-dismiss="modal"
+                  [disabled]="form.invalid">Checkin</button>
+
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-
+          </fieldset>
       </form>
 
     </div>

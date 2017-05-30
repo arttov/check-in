@@ -1,7 +1,7 @@
 <div class="container">
   <div class="block-centered" style="width: 500px;">
-    <app-google-map></app-google-map>
-    <app-user-list></app-user-list>
+    <app-google-map (onAddData)="addData($event)"></app-google-map>
+    <app-user-list [data]="dates"></app-user-list>
   </div>
 </div>
 
