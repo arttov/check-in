@@ -17,7 +17,7 @@ export class ProjectService {
   private headers = new Headers();
 
   private baseUrl = this.baseOrigin;
-  private userUrl  = this.baseUrl + '/users';
+  private userUrl  = this.baseUrl + '/api/users';
 
   constructor(private http: Http, private router: Router) {
 
@@ -42,7 +42,7 @@ export class ProjectService {
    * @returns {Observable<R|T>}
    */
   getAllUser(): Observable<any> {
-    return this.http.get(this.userUrl, {headers: this.headers})
+    return this.http.get(this.userUrl)
       .map((r: Response) => r.json())
       .catch(this.handleError);
   }

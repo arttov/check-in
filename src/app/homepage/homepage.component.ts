@@ -16,6 +16,9 @@ export class HomepageComponent implements OnInit {
     this.getAllUser();
   }
 
+  /**
+   * This function is used to get all user ind DB
+   */
   getAllUser() {
     this._projectService.getAllUser()
       .subscribe(
@@ -29,11 +32,11 @@ export class HomepageComponent implements OnInit {
   }
 
   /**
+   * Function for emitter new user name data
    *
    * @param data
    */
   addData(data) {
     this.dates.unshift(data);
   }
-
 }
