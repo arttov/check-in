@@ -7,14 +7,10 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  @Input()data: any;
+  @Input()users: any;
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  /**
-   * This function is used to get all user in DB
-   */
 }

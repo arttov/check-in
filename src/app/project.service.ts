@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { environment } from '../environments/environment';
+import {User} from "./interface/user";
 
 @Injectable()
 export class ProjectService {
@@ -31,7 +32,7 @@ export class ProjectService {
    * @param data
    * @returns {Observable<R|T>}
    */
-  postUser(data: any): Observable<any> {
+  postUser(data: User): Observable<any> {
     return this.http.post(this.userUrl, data, {headers: this.headers})
       .map((r: Response) => r.json())
       .catch(this.handleError);

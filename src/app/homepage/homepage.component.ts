@@ -8,7 +8,7 @@ import { ProjectService } from '../project.service';
 })
 export class HomepageComponent implements OnInit {
 
-  dates: any;
+  users: any;
   errorMessage: string;
   constructor(private _projectService: ProjectService) { }
 
@@ -23,7 +23,7 @@ export class HomepageComponent implements OnInit {
     this._projectService.getAllUser()
       .subscribe(
         (res) => {
-          this.dates = res;
+          this.users = res;
         },
         error => {
           this.errorMessage = JSON.parse(error._body);
@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
    *
    * @param data
    */
-  addData(data) {
-    this.dates.unshift(data);
+  addData(data: any) {
+    this.users.unshift(data);
   }
 }

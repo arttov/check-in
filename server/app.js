@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -13,26 +14,19 @@ process.env.TZ = 'Asia/Yerevan';
 
 const app = express();
 
-const forceSSL = function() {
-  return function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(
-        ['https://', req.get('Host'), req.url].join('')
-      );
-    }
-    next();
-  }
+let corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
 };
 
-
-// Add headers
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+// // Add headers
+// app.use(function (req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
 
 mongoose.Promise = global.Promise;
 
@@ -50,10 +44,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors(corsOptions));
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '../dist'));
-
-app.use(forceSSL());
 
 app.use('/', index);
 app.use('/api/users', users);
