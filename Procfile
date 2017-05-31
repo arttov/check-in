@@ -1,2 +1,1 @@
-web: node server/bin/www
-web: ng serve
+web: ./bin.sh
