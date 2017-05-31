@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-node server/bin/www
+npm run start_node
+npm run postinstall
 
