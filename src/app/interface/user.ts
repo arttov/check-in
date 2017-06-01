@@ -1,7 +1,7 @@
 export interface User {
-  name: string,
-  latitude: string,
-  longitude: string,
+  name?: string,
+  latitude: number,
+  longitude: number,
   created?: any,
   updated?: any,
 }

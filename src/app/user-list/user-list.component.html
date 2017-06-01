@@ -2,12 +2,26 @@
   Recent check-ins near by
 </h2>
 <hr />
+
 <ul class="list-unstyled">
   <li *ngFor="let item of users">
-    <b>ID: {{item.id}}</b><br>
-   Name: <a href="#">{{item.name}}</a><br>
-   Lat: {{item.latitude}} <br>
-   Lng: {{item.longitude}} <br>
-   Created: {{item.updated|date:'yyyy-mm-d H:m:s'}}<hr /><br />
+
+    <div class="row">
+
+      <div class="col-sm-3">
+        <a href="#">{{item.name}}</a>
+      </div>
+
+      <div class="col-sm-5">
+        {{item.latitude}}
+      </div>
+
+      <div class="col-sm-4">
+        {{item.updated|date:'yyyy-mm-dd hh:mm:ss'}}
+      </div>
+    </div>
+
+    <hr />
   </li>
 </ul>
+

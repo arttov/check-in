@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-user-list',

@@ -9,9 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod",
-    "start_node": "node server/bin/www",
-    "deploy": "git push origin develop && git push heroku master"
+    "node_start": "supervisor server/bin/www"
   },
   "private": true,
   "dependencies": {

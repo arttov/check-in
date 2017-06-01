@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   User.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
-  }).sort('-created').limit(10);
+  }).sort('-id').limit(10);
 });
 
 /* GET SINGLE USER BY ID */
@@ -20,7 +20,6 @@ router.get('/:id', function(req, res, next) {
 
 /* SAVE USER */
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   User.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -29,7 +28,8 @@ router.post('/', function(req, res, next) {
 
 /* UPDATE USER */
 router.put('/:id', function(req, res, next) {
-  User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  let query = {'id':req.params.id};
+  User.findOneAndUpdate(query, req.body, {new:true}, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

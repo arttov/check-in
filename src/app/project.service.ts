@@ -39,6 +39,34 @@ export class ProjectService {
   }
 
   /**
+   * @param userId
+   * @param data
+   * @returns {Observable<R|T>}
+   */
+  putUser(userId: number, data: User): Observable<any> {
+    return this.http.put(this.userUrl + '/' + userId, data, {headers: this.headers})
+      .map((r: Response) => r.json())
+      .catch(this.handleError);
+  }
+
+  /**
+   * This function is used to get current location for user
+   */
+  getLocation(successCb) {
+
+    if (navigator.geolocation) {
+
+      navigator.geolocation.getCurrentPosition(
+        successCb,
+        (err) => {
+          console.log(err);
+        });
+    } else {
+      console.log('Your browser don\`t support HTML5');
+    }
+  }
+
+  /**
    *
    * @returns {Observable<R|T>}
    */
@@ -54,12 +82,16 @@ export class ProjectService {
    * @returns {ErrorObservable}
    */
   private handleError(error: any) {
+
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console instead
+
     if (error.status && error.status === 401) {
       this.router.navigate(['/']);
     }
+
     return Observable.throw(errMsg);
   }
+
 }

@@ -6,10 +6,12 @@ import { ProjectService } from '../project.service';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
+
 export class HomepageComponent implements OnInit {
 
   users: any;
   errorMessage: string;
+
   constructor(private _projectService: ProjectService) { }
 
   ngOnInit() {
@@ -26,7 +28,9 @@ export class HomepageComponent implements OnInit {
           this.users = res;
         },
         error => {
-          this.errorMessage = JSON.parse(error._body);
+          if(error._body) {
+            this.errorMessage = JSON.parse(error._body);
+          }
         }
       );
   }
@@ -36,7 +40,7 @@ export class HomepageComponent implements OnInit {
    *
    * @param data
    */
-  addData(data: any) {
-    this.users.unshift(data);
+  updateUserList(data: any) {
+    this.getAllUser();
   }
 }

@@ -9,7 +9,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { appRouting } from './app-routing';
 import { UserListComponent } from './user-list/user-list.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
-import { CheckInModalComponent } from './modals/check-in-modal/check-in-modal.component';
+import { CheckInModalComponent } from './check-in-modal/check-in-modal.component';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';

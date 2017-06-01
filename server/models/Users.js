@@ -7,7 +7,7 @@ let UserSchema = new mongoose.Schema({
   longitude: { type: Number, required: true},
   created: { type: Date, default: Date.now() },
   updated: { type: Date, default: Date.now() },
-}).plugin(AutoIncrement, {inc_field: 'id'});
+}).plugin(AutoIncrement, {inc_field: 'id'}, {unique: true});
 
 
 module.exports = mongoose.model('User', UserSchema);
