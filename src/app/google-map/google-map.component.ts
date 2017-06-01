@@ -13,8 +13,8 @@ export class GoogleMapComponent implements OnInit {
 
   // default data for map
   location: ILocation = {
-    longitude : 40.3855031,
-    latitude : 45.364846
+    longitude : -0.3824905,
+    latitude : 51.5287336
   };
 
   zoom = 18;
