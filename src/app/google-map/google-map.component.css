@@ -1,3 +1,16 @@
 .sebm-google-map-container {
   height: 300px;
 }
+
+.check-in-button {
+  display: block;
+  margin: 10px auto;
+}
+
+.check-in-modal {
+  display: block;
+  width: 400px;
+  height: 300px;
+  position: relative;
+  margin: 220px auto;
+}
