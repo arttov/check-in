@@ -9,11 +9,10 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { appRouting } from './app-routing';
 import { UserListComponent } from './user-list/user-list.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
-import { CheckInModalComponent } from './check-in-modal/check-in-modal.component';
-
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { ProjectService } from './project.service';
+import { UserItemComponent } from './user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,8 @@ import { ProjectService } from './project.service';
     HomepageComponent,
     UserListComponent,
     GoogleMapComponent,
-    CheckInModalComponent,
     ControlMessagesComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,

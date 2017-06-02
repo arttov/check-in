@@ -3,7 +3,8 @@ export class ValidationService {
   static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
     const config = {
       'required': 'Required',
-      'minlength': `Minimum length ${validatorValue ? validatorValue.requiredLength : 0}`,
+      'minlength': `Minimum length ${validatorValue ? validatorValue.requiredLength : 0} symbols`,
+      'maxlength': `Maximum length ${validatorValue ? validatorValue.requiredLength : 0} symbols`,
       'invalidUserName': 'User name must be only letter'
     };
 

@@ -4,10 +4,10 @@ const User = require('../models/Users.js');
 
 /* GET ALL USERS */
 router.get('/', function(req, res, next) {
-  User.find(function (err, products) {
+  User.find(function (err, user) {
     if (err) return next(err);
-    res.json(products);
-  }).sort('-id').limit(10);
+    res.json(user);
+  }).sort('-updated').limit(10);
 });
 
 /* GET SINGLE USER BY ID */

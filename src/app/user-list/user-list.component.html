@@ -4,24 +4,8 @@
 <hr />
 
 <ul class="list-unstyled">
-  <li *ngFor="let item of users">
-
-    <div class="row">
-
-      <div class="col-sm-3">
-        <a href="#">{{item.name}}</a>
-      </div>
-
-      <div class="col-sm-5">
-        {{item.latitude}}
-      </div>
-
-      <div class="col-sm-4">
-        {{item.updated|date:'yyyy-mm-dd hh:mm:ss'}}
-      </div>
-    </div>
-
-    <hr />
+  <li *ngFor="let user of users">
+    <app-user-item [user]="user"></app-user-item>
   </li>
 </ul>
 
