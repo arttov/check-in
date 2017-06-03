@@ -13,7 +13,7 @@ let customValidators = [
 
 let UserSchema = new mongoose.Schema({
   name: { type: String, required: true, validate: customValidators},
-  location: { longitude: {type: Number, required: true}, latitude: {type: Number, required: true} },
+  coordinate: { type: [Number], required: true, index: '2dsphere' },
   created: { type: Date, default: Date.now() },
   updated: { type: Date, default: Date.now() },
 }).plugin(AutoIncrement, {inc_field: 'id'}, {unique: true});

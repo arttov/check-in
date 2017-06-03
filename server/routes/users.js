@@ -1,13 +1,28 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/Users.js');
+let express = require('express');
+let router = express.Router();
+let User = require('../models/Users.js');
 
 /* GET ALL USERS */
 router.get('/', function(req, res, next) {
-  User.find(function (err, user) {
+
+  let earthRadius = 6378.1, //km
+      searchInRadius = 200,
+      distance = searchInRadius / earthRadius; //km
+
+  //get nearby users
+  User.collection.geoNear([44.43571, 40.16134], {
+    maxDistance : distance,
+    distanceMultiplier: earthRadius,
+    spherical: true,
+    num: 10
+    },
+
+    function (err, user) {
     if (err) return next(err);
-    res.json(user);
-  }).sort('-updated').limit(10);
+    console.log(user.results[2].dis);
+      res.json(user.results);
+  }
+  );
 });
 
 /* GET SINGLE USER BY ID */
@@ -34,6 +49,7 @@ router.put('/:id', function(req, res, next) {
     res.json(post);
   });
 });
+
 
 /* DELETE USER */
 router.delete('/:id', function(req, res, next) {

@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProjectService } from '../project.service';
-import { ILocation } from "../interface/location";
 import { ValidationService } from '../validation.service';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import {User} from "../interface/user";
 
 @Component({
   selector: 'app-google-map',
@@ -15,17 +13,17 @@ export class GoogleMapComponent implements OnInit {
 
   @Output() updateUserList: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
-  user: User;
+  user: any;
   errorMessage: any;
   userName: string = '';
+  getLocation: boolean = false;
 
-  // default data for map
-  location: ILocation = {
-    longitude : -0.3824905,
-    latitude : 51.5287336
-  };
-
-  zoom = 18;
+  //default data for map
+  zoom = 17;
+  coordinate: number[] = [
+    -0.3824905,
+    51.5287336
+    ];
 
   constructor(private fb: FormBuilder, private _projectService: ProjectService) {}
 
@@ -54,14 +52,13 @@ export class GoogleMapComponent implements OnInit {
    * This function is used to save user data in db
    */
   sendUserData() {
-
     if (this.form.value.name) {
-      this.initCurrentLocation();
+      this.initCurrentCoordinate();
     }
   }
 
   /**
-   * This function is used to check for saving user data nad location
+   * This function is used to check for saving user data nad coordinate
    */
   checkUserData() {
 
@@ -92,24 +89,24 @@ export class GoogleMapComponent implements OnInit {
     // GENERATE USER DATA AND SAVE IT
     this.user = Object.assign({}, {
       name : data,
-      location : {
-        longitude: this.location.longitude,
-        latitude: this.location.latitude
-      }
+      coordinate : this.coordinate
+      // coordinate : [45.407624, 39.198935]
+      // 39.198935, 45.407624
     });
 
     this._projectService.postUser(this.user)
       .subscribe(
         (res) => {
-          localStorage.setItem('user_info', JSON.stringify({
-            'id': res.id,
-            'location': res.location,
-            'name': res.name
-            })
-          );
-
-          this.errorMessage = null;
-          this.updateUserList.emit(res);
+          if(res) {
+            this.updateUserList.emit();
+            this.errorMessage = null;
+            localStorage.setItem('user_info', JSON.stringify({
+                'id': res.id,
+                'coordinate': res.coordinate,
+                'name': res.name
+              })
+            );
+          }
         },
         error => {
           this.errorMessage = JSON.parse(error._body);
@@ -129,22 +126,21 @@ export class GoogleMapComponent implements OnInit {
     // GENERATE USER DATA AND SAVE IT
     this.user = Object.assign({}, {
       name: this.form.value.name,
-      location : {
-        longitude: this.location.longitude,
-        latitude: this.location.latitude
-      },
+      coordinate : this.coordinate,
       updated: new Date()
     });
 
     this._projectService.putUser(userId, this.user)
       .subscribe(
         (res) => {
-          this.updateUserList.emit(res);
-          localStorage.setItem('user_info', JSON.stringify({
-            id: res.id,
-            location: res.location,
-            name: res.name
-          }))
+          if(res) {
+            this.updateUserList.emit();
+            localStorage.setItem('user_info', JSON.stringify({
+              id: res.id,
+              coordinate: res.coordinate,
+              name: res.name
+            }))
+          }
         },
         error => {
           this.errorMessage = JSON.parse(error._body);
@@ -153,19 +149,25 @@ export class GoogleMapComponent implements OnInit {
   }
 
   /**
-   * This function is used to init current location
+   * This function is used to init current coordinate
    */
-  initCurrentLocation() {
+  initCurrentCoordinate() {
+    this.getLocation = true;
     this._projectService.getLocation(this.onLocationChange.bind(this));
   }
 
-  // get current location in service
+  // get current coordinate in service and save it
   onLocationChange(showPosition) {
-    this.location.longitude = showPosition.coords.longitude;
-    this.location.latitude = showPosition.coords.latitude;
+    let coordinate = [];
 
-    //Update location at refresh or check-in action
-    this.checkUserData();
+    coordinate.push(Number.parseFloat(showPosition.coords.longitude.toFixed(5)));
+    coordinate.push(Number.parseFloat(showPosition.coords.latitude.toFixed(5)));
+    this.coordinate = coordinate;
+
+    if(this.getLocation) {
+      //Update coordinate at refresh or check-in action
+      this.checkUserData();
+    }
   }
 
   // reset form data

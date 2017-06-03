@@ -40,7 +40,7 @@ export class HomepageComponent implements OnInit {
    *
    * @param data
    */
-  updateUserList(data: any) {
+  updateUserList() {
     this.getAllUser();
   }
 }

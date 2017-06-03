@@ -22,7 +22,6 @@ export class ProjectService {
 
   constructor(private http: Http, private router: Router) {
 
-    console.log(this.userUrl);
     if (!environment.production) {
       console.log('you are in development mode');
     }
