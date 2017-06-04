@@ -89,8 +89,8 @@ export class GoogleMapComponent implements OnInit {
     // GENERATE USER DATA AND SAVE IT
     this.user = Object.assign({}, {
       name : data,
-      // coordinate : this.coordinate
-      coordinate : [44.437512, 40.148802]
+      coordinate : this.coordinate
+      // coordinate : [44.437512, 40.148802]
       //40.148802, 44.437512
     });
 
