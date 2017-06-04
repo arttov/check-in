@@ -12,7 +12,7 @@ let customValidators = [
 ];
 
 let UserSchema = new mongoose.Schema({
-  name: { type: String, required: true, validate: customValidators},
+  name: { type: String, required: true, min: 2, max: 50, validate: customValidators},
   coordinate: { type: [Number], required: true, index: '2dsphere' },
   created: { type: Date, default: Date.now() },
   updated: { type: Date, default: Date.now() },

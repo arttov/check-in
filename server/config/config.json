@@ -1,8 +1,10 @@
 {
-  "database": {
-    "host":     "127.0.0.1",
+  "db": {
+    "host":     "mongodb://localhost/checkin",
+    "test_host":   "mongodb://localhost/testcheckin",
     "username": "root",
     "password": null,
     "name":     "checkin"
-  }
+  },
+  "url": "http://localhost:3000/api/users"
 }

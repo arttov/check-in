@@ -14,15 +14,13 @@ export class HomepageComponent implements OnInit {
 
   constructor(private _projectService: ProjectService) { }
 
-  ngOnInit() {
-    this.getAllUser();
-  }
+  ngOnInit() {}
 
   /**
    * This function is used to get all user ind DB
    */
-  getAllUser() {
-    this._projectService.getAllUser()
+  getAllUser(data: any) {
+    this._projectService.getAllUser(data)
       .subscribe(
         (res) => {
           this.users = res;
@@ -40,7 +38,7 @@ export class HomepageComponent implements OnInit {
    *
    * @param data
    */
-  updateUserList() {
-    this.getAllUser();
+  updateUserList(data?: any) {
+    this.getAllUser(data);
   }
 }

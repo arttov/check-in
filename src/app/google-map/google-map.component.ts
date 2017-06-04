@@ -90,15 +90,15 @@ export class GoogleMapComponent implements OnInit {
     this.user = Object.assign({}, {
       name : data,
       coordinate : this.coordinate
-      // coordinate : [45.407624, 39.198935]
-      // 39.198935, 45.407624
+      // coordinate : [41.610836, 41.606056]
+      // 41.606056, 41.610836
     });
 
     this._projectService.postUser(this.user)
       .subscribe(
         (res) => {
           if(res) {
-            this.updateUserList.emit();
+            this.updateUserList.emit(res.coordinate);
             this.errorMessage = null;
             localStorage.setItem('user_info', JSON.stringify({
                 'id': res.id,
@@ -134,7 +134,7 @@ export class GoogleMapComponent implements OnInit {
       .subscribe(
         (res) => {
           if(res) {
-            this.updateUserList.emit();
+            this.updateUserList.emit(res.coordinate);
             localStorage.setItem('user_info', JSON.stringify({
               id: res.id,
               coordinate: res.coordinate,
@@ -158,15 +158,19 @@ export class GoogleMapComponent implements OnInit {
 
   // get current coordinate in service and save it
   onLocationChange(showPosition) {
-    let coordinate = [];
 
+    let coordinate = [];
     coordinate.push(Number.parseFloat(showPosition.coords.longitude.toFixed(5)));
     coordinate.push(Number.parseFloat(showPosition.coords.latitude.toFixed(5)));
     this.coordinate = coordinate;
 
+
     if(this.getLocation) {
-      //Update coordinate at refresh or check-in action
+      //Update coordinate
       this.checkUserData();
+    } else{
+
+      this.updateUserList.emit(this.coordinate);
     }
   }
 

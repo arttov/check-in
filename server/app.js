@@ -1,18 +1,18 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+let express = require('express');
+let path = require('path');
+let favicon = require('serve-favicon');
+let logger = require('morgan');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let cors = require('cors');
+let mongoose = require('mongoose');
 
-const index = require('./routes/index');
-const users = require('./routes/users');
+let index = require('./routes/index');
+let users = require('./routes/users');
 
-const mongoose = require('mongoose');
 process.env.TZ = 'Asia/Yerevan';
 
-const app = express();
+let app = express();
 
 let corsOptions = {
   origin: '*',
@@ -28,11 +28,23 @@ let corsOptions = {
 //   next();
 // });
 
-mongoose.Promise = global.Promise;
+// mongodb://artur:artur@ds133221.mlab.com:33221/checkin
+// mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/checkin')
-  .then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
+//set mongo url
+let mongooseUrl =
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL  ||
+  'mongodb://localhost/checkin';
+
+mongoose.connect(mongooseUrl, function (err, res) {
+  if (err) {
+    console.log ('ERROR connecting to: ' + mongooseUrl + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + mongooseUrl);
+  }
+}
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,7 +56,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
-// app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '../dist'));
 
 app.use('/', index);
@@ -52,7 +63,7 @@ app.use('/api/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

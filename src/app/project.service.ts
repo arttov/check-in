@@ -69,8 +69,8 @@ export class ProjectService {
    *
    * @returns {Observable<R|T>}
    */
-  getAllUser(): Observable<any> {
-    return this.http.get(this.userUrl)
+  getAllUser(data: any): Observable<any> {
+    return this.http.get(this.userUrl+'/'+data[0]+'/'+data[1])
       .map((r: Response) => r.json())
       .catch(this.handleError);
   }

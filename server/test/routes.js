@@ -1,0 +1,77 @@
+let should = require('should');
+let assert = require('assert');
+let request = require('supertest');
+let mongoose = require('mongoose');
+let winston = require('winston');
+let config = require('../config/config.json');
+
+describe('Routing', function() {
+
+  var data = {};
+
+  let url = config.url;
+  before(function(done) {
+    // In our tests we use the test db
+    mongoose.connect(config.db.host);
+    done();
+  });
+
+  describe('Create user', function() {
+    it('should create user, and return status code 200', function(done) {
+      let userData = {
+        name: 'vigen tovmasyan',
+        coordinate: [43.2555, 48.6541] ,
+        created: Date.now(),
+        updated: Date.now()
+      };
+
+      request(url)
+        .post('/')
+        .send(userData)
+        // end handles the response
+        .end(function(err, res) {
+          if (err) {
+            throw err;
+          }
+          console.log(res.id);
+          data.id = res.id;
+          // this is should.js syntax, very clear
+          res.should.have.property('status', 200);
+          done();
+        });
+    });
+
+    it('should correctly update an existing user', function(done){
+      let body = {
+        name: 'VGO TAMO',
+      };
+
+      request(url)
+        .put('/' + data.id)
+        .send(body)
+        .expect(200) //Status code
+        .end(function(err,res) {
+          if (err) {
+            throw err;
+          }
+          // Should.js fluent syntax applied
+          res.body.should.have.property('_id');
+          res.body.name.should.equal('VGO TAMO');
+          done();
+        });
+    });
+
+
+      // it('should return status 200 after DELETING a user', function(done) {
+      //   request(url)
+      //     .del('/api/buses/' + user.id)
+      //     .end(function(err, res) {
+      //       if (err) {
+      //         throw err;
+      //       }
+      //       res.should.have.status(200);
+      //       done();
+      //     });
+      // });
+  });
+});

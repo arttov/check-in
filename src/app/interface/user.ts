@@ -1,6 +1,6 @@
 export interface User {
   name: string,
-  location : number[],
+  location: number[],
   created?: any,
   updated?: any,
 }
