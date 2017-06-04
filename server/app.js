@@ -33,8 +33,7 @@ let corsOptions = {
 
 //set mongo url
 let mongooseUrl =
-  process.env.MONGOLAB_URI ||
-  process.env.MONGOHQ_URL  ||
+   process.env.MONGO_URL  ||
   'mongodb://localhost/checkin';
 
 mongoose.connect(mongooseUrl, function (err, res) {

@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let AutoIncrement = require('mongoose-sequence');
 
-//create my custom validation
+//create my custom validation-
 let onlyLettersAllow = function(string) {
   let myRegxp = /^([a-zA-Z ]){1,50}$/i;
   return myRegxp.test(string);
