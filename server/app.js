@@ -5,7 +5,7 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let cors = require('cors');
-let mongoose = require('mongoose');
+let DB = require('./config/db');
 
 let index = require('./routes/index');
 let users = require('./routes/users');
@@ -19,31 +19,7 @@ let corsOptions = {
   optionsSuccessStatus: 200
 };
 
-// // Add headers
-// app.use(function (req, res, next) {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-//   next();
-// });
-
-// mongodb://artur:artur@ds133221.mlab.com:33221/checkin
-// mongoose.Promise = global.Promise;
-
-//set mongo url
-let mongooseUrl =
-   process.env.MONGO_URL  ||
-  'mongodb://localhost/checkin';
-
-mongoose.connect(mongooseUrl, function (err, res) {
-  if (err) {
-    console.log ('ERROR connecting to: ' + mongooseUrl + '. ' + err);
-  } else {
-    console.log ('Succeeded connected to: ' + mongooseUrl);
-  }
-}
-);
+DB.connect(DB.MODE_PRODUCTION);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
