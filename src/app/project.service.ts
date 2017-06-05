@@ -14,7 +14,7 @@ import {User} from "./interface/user";
 export class ProjectService {
 
   // TODO
-  private baseOrigin = environment.production ? 'http://stage.bucketlist127.com' : 'http://' + window.location.hostname + ':3000';
+  private baseOrigin = environment.host;
   private headers = new Headers();
 
   private baseUrl = this.baseOrigin;

@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  host: 'http://checkin.loc:8080'
+  // host: 'https://checkinuser.herokuapp.com'
 };

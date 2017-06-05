@@ -90,8 +90,8 @@ export class GoogleMapComponent implements OnInit {
     this.user = Object.assign({}, {
       name : data,
       coordinate : this.coordinate
-      // coordinate : [50.608277, 40.325062]
-      //40.325062, 50.608277
+      // coordinate : [44.548339, 40.230122]
+      //40.230122, 44.548339
     });
 
     this._projectService.postUser(this.user)
