@@ -10,8 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "node_start": "supervisor server/bin/www",
-    "preinstall":   "cd server && npm install && node bin/www",
-    "postinstall":  "npm install"
+    "preinstall":   "npm install && cd server && npm install && node bin/www",
   },
   "private": true,
   "dependencies": {
