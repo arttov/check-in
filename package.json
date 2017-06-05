@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "node_start": "supervisor server/bin/www",
+    "node_start": "supervisor server/bin/www"
   },
   "private": true,
   "dependencies": {
