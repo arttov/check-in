@@ -1,1 +1,1 @@
-web: ./bin.sh
+web: node server/bin/www

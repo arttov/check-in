@@ -13,7 +13,6 @@ import {User} from "./interface/user";
 @Injectable()
 export class ProjectService {
 
-  // TODO
   private baseOrigin = environment.host;
   private headers = new Headers();
 

@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '../dist'));
 
-app.use('/', index);
+// app.use('/', index);
 app.use('/api/users', users);
 
 // catch 404 and forward to error handler
