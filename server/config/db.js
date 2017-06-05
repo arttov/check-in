@@ -1,5 +1,4 @@
 let mongoose = require('mongoose');
-// let async = require('async');
 
 // mongodb://artur:artur@ds133221.mlab.com:33221/checkin
 // mongoose.Promise = global.Promise;
