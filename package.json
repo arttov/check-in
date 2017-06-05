@@ -4,18 +4,16 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "node_start": "supervisor server/bin/www",
-    "preinstall": "ng build -prod && cd server && npm install && node bin/www"
   },
   "private": true,
   "dependencies": {
     "@angular/common": "^4.0.0",
-    "@angular/cli": "1.0.6",
-    "@angular/compiler-cli": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
