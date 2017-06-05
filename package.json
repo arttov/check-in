@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "node_start": "supervisor server/bin/www",
-    "preinstall":   "cd server && npm install",
+    "preinstall":   "cd server && npm install && node bin/www",
     "postinstall":  "ng build --prod"
   },
   "private": true,
