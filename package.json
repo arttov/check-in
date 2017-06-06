@@ -10,8 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "node_start_prod": "NODE_ENV=production node server/bin/www",
-    "node_start_test": "NODE_ENV=test supervisor server/bin/www",
-    "preinstall": "npm install",
+    "node_start_test": "NODE_ENV=test node server/bin/www",
     "postinstall": "ng build -prod"
   },
   "private": true,
