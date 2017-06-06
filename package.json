@@ -4,14 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "npm run node_start_prod",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "node_start_prod": "NODE_ENV=production node server/bin/www",
-    "node_start_test": "NODE_ENV=test node server/bin/www",
-    "postinstall": "ng build -prod"
+    "node_start_prod": "NODE_ENV=production supervisor server/bin/www",
+    "node_start_test": "NODE_ENV=test supervisor server/bin/www"
   },
   "private": true,
   "dependencies": {
@@ -27,18 +26,7 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4",
-
-    "cookie-parser": "~1.4.3",
-    "cors": "^2.8.3",
-    "debug": "~2.6.0",
-    "ejs": "~2.5.5",
-    "express": "~4.14.1",
-    "mongoose": "~4.10.2",
-    "mongoose-sequence": "^3.2.0",
-    "morgan": "~1.7.0",
-    "node-restful": "^0.2.6",
-    "serve-favicon": "~2.3.2"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular/cli": "1.0.6",
