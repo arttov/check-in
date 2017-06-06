@@ -11,6 +11,7 @@ export class HomepageComponent implements OnInit {
 
   users: any;
   errorMessage: string;
+  loading: boolean = false;
 
   constructor(private _projectService: ProjectService) { }
 
@@ -20,9 +21,13 @@ export class HomepageComponent implements OnInit {
    * This function is used to get all user ind DB
    */
   getAllUser(data: any) {
+
+    this.loading = true;
+
     this._projectService.getAllUser(data)
       .subscribe(
         (res) => {
+          this.loading = false;
           this.users = res;
         },
         error => {

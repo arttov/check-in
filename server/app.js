@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use(express.static(__dirname + '../dist'));
+app.use(express.static(__dirname + '../web/dist'));
 
 app.use('/', index);
 app.use('/api/users', users);

@@ -13,6 +13,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { ProjectService } from './project.service';
 import { UserItemComponent } from './user-item/user-item.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UserItemComponent } from './user-item/user-item.component';
     UserListComponent,
     GoogleMapComponent,
     ControlMessagesComponent,
-    UserItemComponent
+    UserItemComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
