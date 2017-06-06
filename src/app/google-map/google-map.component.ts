@@ -137,7 +137,7 @@ export class GoogleMapComponent implements OnInit {
             this.updateUserList.emit(res.coordinate);
             localStorage.setItem('user_info', JSON.stringify({
               id: res.id,
-              coordinate: res.coordinate,
+              // coordinate: res.coordinate,
               name: res.name
             }))
           }

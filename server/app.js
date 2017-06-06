@@ -6,7 +6,6 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let cors = require('cors');
 let DB = require('./config/db');
-
 let index = require('./routes/index');
 let users = require('./routes/users');
 
@@ -19,7 +18,12 @@ let corsOptions = {
   optionsSuccessStatus: 200
 };
 
-DB.connect(DB.MODE_PRODUCTION);
+//check node env. and connect db
+if(process.env.NODE_ENV === 'production') {
+  DB.connect(DB.MODE_PRODUCTION);
+} else if(process.env.NODE_ENV === 'test') {
+  DB.connect(DB.MODE_TEST);
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

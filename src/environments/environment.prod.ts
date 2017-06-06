@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host: 'http://checkin.loc:8080'
+  host: 'https://003a583e.ngrok.io'
 };

@@ -10,7 +10,7 @@ router.get('/:longitude/:latitude', function(req, res, next) {
 
   //generate distance value by km
   let earthRadius = 6378.1, //km
-    searchInRadius = 7.1, //km
+    searchInRadius = 3000, //km
     distance = searchInRadius / earthRadius; //km
 
   //get nearby users
@@ -30,6 +30,7 @@ router.get('/:longitude/:latitude', function(req, res, next) {
   );
 });
 
+
 /* GET SINGLE USER BY ID */
 router.get('/:id', function(req, res, next) {
   User.findById(req.params.id, function (err, user) {
@@ -38,6 +39,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+
 /* SAVE USER */
 router.post('/', function(req, res, next) {
   User.create(req.body, function (err, user) {
@@ -45,6 +47,7 @@ router.post('/', function(req, res, next) {
     res.json(user);
   });
 });
+
 
 /* UPDATE USER */
 router.put('/:id', function(req, res, next) {

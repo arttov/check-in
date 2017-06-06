@@ -1,0 +1,9 @@
+{
+  "db" : {
+    "test": "mongodb://localhost/test",
+    "prod": "mongodb://artur:artur@ds133221.mlab.com:33221/checkin"
+  },
+  "port" : "8080",
+  "host" : "http://localhost:8080/api/users"
+
+}
