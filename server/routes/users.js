@@ -10,7 +10,7 @@ router.get('/:longitude/:latitude', function(req, res, next) {
 
   //generate distance value by km
   let earthRadius = 6378.1, //km
-    searchInRadius = 3000, //km
+    searchInRadius = 1, //km
     distance = searchInRadius / earthRadius; //km
 
   //get nearby users
