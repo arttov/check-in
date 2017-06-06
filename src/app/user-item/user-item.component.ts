@@ -11,6 +11,7 @@ export class UserItemComponent implements OnInit {
   diffDate: number;
   distance: any;
   dateText: string;
+  minimalDistance: number = 0.1;
 
   constructor() {}
 
@@ -19,19 +20,18 @@ export class UserItemComponent implements OnInit {
     this.convertDistance();
   }
 
-  // convert users distance
+  // convert users distance for show in list
   convertDistance() {
 
-    let decimalZero = this.user.dis.toString()[0],
-        dist = this.user.dis;
+    let dist = this.user.dis;
 
-    if(decimalZero == '0') {
-      this.distance = Number(Math.round(dist + 1) + 'e-' + 1);
+    if (dist <= this.minimalDistance && dist !== 0) {
+      this.distance = this.minimalDistance;
     } else {
       this.distance = dist;
     }
 
-    this.distance = this.distance.toFixed(1);
+    this.distance = +this.distance.toFixed(1);
   }
 
 

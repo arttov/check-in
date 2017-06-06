@@ -23,7 +23,7 @@ export class GoogleMapComponent implements OnInit {
   coordinate: number[] = [
     -0.3824905,
     51.5287336
-    ];
+  ];
 
   constructor(private fb: FormBuilder, private _projectService: ProjectService) {}
 
@@ -90,8 +90,8 @@ export class GoogleMapComponent implements OnInit {
     this.user = Object.assign({}, {
       name : data,
       coordinate : this.coordinate
-      // coordinate : [44.548339, 40.230122]
-      //40.230122, 44.548339
+      // coordinate : [44.527979, 40.191314]
+      //40.191314, 44.527979
     });
 
     this._projectService.postUser(this.user)
@@ -160,8 +160,8 @@ export class GoogleMapComponent implements OnInit {
   onLocationChange(showPosition) {
 
     let coordinate = [];
-    coordinate.push(Number.parseFloat(showPosition.coords.longitude.toFixed(5)));
-    coordinate.push(Number.parseFloat(showPosition.coords.latitude.toFixed(5)));
+    coordinate.push(Number.parseFloat(showPosition.coords.longitude.toFixed(6)));
+    coordinate.push(Number.parseFloat(showPosition.coords.latitude.toFixed(6)));
     this.coordinate = coordinate;
 
 
