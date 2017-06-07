@@ -18,7 +18,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {}
 
   /**
-   * This function is used to get all user ind DB
+   * This function is used to get all user in DB by radius
    */
   getAllUser(data: any) {
 
@@ -39,11 +39,11 @@ export class HomepageComponent implements OnInit {
   }
 
   /**
-   * Function for emitter new user name data
+   * Function for event emitter, update user list after check-in
    *
    * @param data
    */
-  updateUserList(data?: any) {
+  updateUserList(data: any) {
     this.getAllUser(data);
   }
 }

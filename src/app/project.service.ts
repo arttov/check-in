@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
 
-// Operators
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { environment } from '../environments/environment';
@@ -19,14 +18,11 @@ export class ProjectService {
   private baseUrl = this.baseOrigin;
   private userUrl  = this.baseUrl + '/api/users';
 
-  constructor(private http: Http, private router: Router) {
-
-    if (!environment.production) {
-      console.log('you are in development mode');
-    }
-  }
+  constructor(private http: Http, private router: Router) {}
 
   /**
+   * This function is used to create user with coordinate
+   *
    * @param data
    * @returns {Observable<R|T>}
    */
@@ -37,6 +33,8 @@ export class ProjectService {
   }
 
   /**
+   * This function is used to update user with coordinate
+   *
    * @param userId
    * @param data
    * @returns {Observable<R|T>}

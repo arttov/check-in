@@ -21,6 +21,7 @@ let corsOptions = {
 //check node env. and connect db
 if(process.env.NODE_ENV === 'production') {
   DB.connect(DB.MODE_PRODUCTION);
+
 } else if(process.env.NODE_ENV === 'test') {
   DB.connect(DB.MODE_TEST);
 }

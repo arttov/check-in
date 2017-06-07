@@ -20,7 +20,7 @@ export class UserItemComponent implements OnInit {
     this.convertDistance();
   }
 
-  // convert users distance for show in list
+  //convert users distance for show in list
   convertDistance() {
 
     let dist = this.user.dis;
@@ -33,7 +33,6 @@ export class UserItemComponent implements OnInit {
 
     this.distance = +this.distance.toFixed(1);
   }
-
 
   /**
    * This function is used to generate last updated time for user list

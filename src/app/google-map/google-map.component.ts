@@ -18,12 +18,13 @@ export class GoogleMapComponent implements OnInit {
   userName: string = '';
   getLocation: boolean = false;
 
-  //default data for map
+  //default data for google map
   zoom = 17;
-  coordinate: number[] = [
-    -0.3824905,
-    51.5287336
-  ];
+  coordinate: number[] =
+    [
+      45.245175,
+      40.514692
+    ];
 
   constructor(private fb: FormBuilder, private _projectService: ProjectService) {}
 
@@ -38,7 +39,7 @@ export class GoogleMapComponent implements OnInit {
    */
   initUserForm() {
 
-    // create form validation
+    //init form with validation
     this.form = this.fb.group({
         'name': [this.userName, [Validators.required,
           Validators.maxLength(50),
@@ -49,7 +50,7 @@ export class GoogleMapComponent implements OnInit {
   }
 
   /**
-   * This function is used to save user data in db
+   * This function is used to send user name with form
    */
   sendUserData() {
     if (this.form.value.name) {
@@ -58,7 +59,7 @@ export class GoogleMapComponent implements OnInit {
   }
 
   /**
-   * This function is used to check for saving user data nad coordinate
+   * This function is used to manage user data
    */
   checkUserData() {
 
@@ -70,7 +71,7 @@ export class GoogleMapComponent implements OnInit {
       //save user data in local storage
       let userDataInStorage = localStorage.getItem('user_info');
 
-      //check in user not exist
+      //check if user not exist in storage
       if (!userDataInStorage) {
         this.addNewUser(userName);
 
@@ -81,25 +82,29 @@ export class GoogleMapComponent implements OnInit {
   }
 
   /**
+   * This function is used to add new user coordinate in db
    *
    * @param data
    */
   addNewUser(data: string) {
 
-    // GENERATE USER DATA AND SAVE IT
+    //GENERATE USER DATA AND SAVE IT
     this.user = Object.assign({}, {
       name : data,
       coordinate : this.coordinate
-      // coordinate : [44.527979, 40.191314]
-      //40.191314, 44.527979
+      // coordinate : [44.498005, 40.197218]
+      //40.197218, 44.498005
     });
 
     this._projectService.postUser(this.user)
       .subscribe(
         (res) => {
           if(res) {
+
+            //send emitter for update user list
             this.updateUserList.emit(res.coordinate);
             this.errorMessage = null;
+
             localStorage.setItem('user_info', JSON.stringify({
                 'id': res.id,
                 'coordinate': res.coordinate,
@@ -115,6 +120,7 @@ export class GoogleMapComponent implements OnInit {
   }
 
   /**
+   * This function is used to update user data
    *
    * @param userDataInStorage
    */
@@ -134,10 +140,11 @@ export class GoogleMapComponent implements OnInit {
       .subscribe(
         (res) => {
           if(res) {
+
+            //send emitter for update user list
             this.updateUserList.emit(res.coordinate);
             localStorage.setItem('user_info', JSON.stringify({
               id: res.id,
-              // coordinate: res.coordinate,
               name: res.name
             }))
           }
@@ -156,28 +163,32 @@ export class GoogleMapComponent implements OnInit {
     this._projectService.getLocation(this.onLocationChange.bind(this));
   }
 
-  // get current coordinate in service and save it
+  //get current coordinate in service and save it
   onLocationChange(showPosition) {
 
+    //set current coordinate in variables
     let coordinate = [];
     coordinate.push(Number.parseFloat(showPosition.coords.longitude.toFixed(6)));
     coordinate.push(Number.parseFloat(showPosition.coords.latitude.toFixed(6)));
     this.coordinate = coordinate;
 
-
     if(this.getLocation) {
-      //Update coordinate
+      //manage user coordinate
       this.checkUserData();
     } else{
 
+      //send emitter for update user list
       this.updateUserList.emit(this.coordinate);
     }
   }
 
-  // reset form data
-  resetFormData() {
+  //open form function
+  openForm() {
+
+    //get user data in local storage
     let storageData = localStorage.getItem('user_info');
 
+    //set user name in form if it exist in storage
     if(storageData) {
       storageData = JSON.parse(storageData);
       this.userName = storageData['name'] ? storageData['name'] : '';

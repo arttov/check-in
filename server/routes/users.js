@@ -5,6 +5,7 @@ let User = require('../models/Users.js');
 /* GET ALL NEAR BY USERS BY RADIUS */
 router.get('/:longitude/:latitude', function(req, res, next) {
 
+  //get coordinate by request parameters
   let longitude = +req.params.longitude;
   let latitude = +req.params.latitude;
 
@@ -18,10 +19,10 @@ router.get('/:longitude/:latitude', function(req, res, next) {
       maxDistance : distance,
       distanceMultiplier: earthRadius,
       spherical: true,
-      num: 10
+      num: 12
     },
     function (err, user) {
-      if (err)  handleError(res, err.message, "Failed to get users.");
+      if (err) handleError(res, err.message, "Failed to get users.");
 
       if(user) {
         res.json(user.results);
