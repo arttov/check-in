@@ -22,7 +22,7 @@ router.get('/:longitude/:latitude', function(req, res, next) {
       num: 12
     },
     function (err, user) {
-      if (err) handleError(res, err.message, "Failed to get users.");
+      if (err) next(err);
 
       if(user) {
         res.json(user.results);
@@ -30,7 +30,6 @@ router.get('/:longitude/:latitude', function(req, res, next) {
     }
   );
 });
-
 
 /* GET SINGLE USER BY ID */
 router.get('/:id', function(req, res, next) {

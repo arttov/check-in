@@ -1,10 +1,9 @@
 let express = require('express');
 let path = require('path');
-let favicon = require('serve-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-let cors = require('cors');
+let cros = require('cors');
 let DB = require('./config/db');
 let index = require('./routes/index');
 let users = require('./routes/users');
@@ -13,7 +12,8 @@ process.env.TZ = 'Asia/Yerevan';
 
 let app = express();
 
-let corsOptions = {
+//define option for cross domain request
+let crosOptions = {
   origin: '*',
   optionsSuccessStatus: 200
 };
@@ -26,18 +26,15 @@ if(process.env.NODE_ENV === 'production') {
   DB.connect(DB.MODE_TEST);
 }
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//setup modules
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cros(crosOptions));
 app.use(express.static(__dirname + '../web/dist'));
 
+//setup routes
 app.use('/', index);
 app.use('/api/users', users);
 

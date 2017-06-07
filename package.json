@@ -9,8 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "node": "NODE_ENV=production node server/bin/www",
-    "node_test": "NODE_ENV=test node server/bin/www"
+    "node": "NODE_ENV=production supervisor server/bin/www",
+    "node_test": "NODE_ENV=test supervisor server/bin/www"
   },
   "private": true,
   "dependencies": {
