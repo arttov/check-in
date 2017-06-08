@@ -7,6 +7,7 @@ let cros = require('cors');
 let DB = require('./config/db');
 let index = require('./routes/index');
 let users = require('./routes/users');
+let compression = require('compression');
 
 process.env.TZ = 'Asia/Yerevan';
 
@@ -27,6 +28,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 //setup modules
+app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

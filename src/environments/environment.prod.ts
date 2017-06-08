@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host: 'https://06760747.ngrok.io'
+  host: 'https://db317e99.ngrok.io'
 };
