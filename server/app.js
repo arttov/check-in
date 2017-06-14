@@ -20,10 +20,10 @@ let crosOptions = {
 };
 
 //check node env. and connect db
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   DB.connect(DB.MODE_PRODUCTION);
 
-} else if(process.env.NODE_ENV === 'test') {
+}  else {
   DB.connect(DB.MODE_TEST);
 }
 
