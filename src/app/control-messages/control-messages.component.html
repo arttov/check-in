@@ -1,9 +1,6 @@
-<div *ngIf="errorMessage !== null">
-    <span style="
-            color:#FF0000 !important;
-            font-size:12px;
-            font-family: 'Open Sans', sans-serif;">
-            {{errorMessage}}
-    </span>
+<div class="control-group error" *ngIf="errorMessage !== null">
+  <div class="controls">
+    <span class="text-danger">{{errorMessage}}</span>
+  </div>
 </div>
 
