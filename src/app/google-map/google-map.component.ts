@@ -47,6 +47,9 @@ export class GoogleMapComponent implements OnInit {
           ValidationService.userNameValidator]]
       }
     );
+
+    
+    // this.form.valueChanges.subscribe(data => console.log(data));
   }
 
   /**
