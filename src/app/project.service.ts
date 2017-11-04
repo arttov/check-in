@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
@@ -13,12 +13,12 @@ import {User} from "./interface/user";
 export class ProjectService {
 
   private baseOrigin = environment.host;
-  private headers = new Headers();
+  private headers = new HttpHeaders();
 
   private baseUrl = this.baseOrigin;
   private userUrl  = this.baseUrl + '/api/users';
 
-  constructor(private http: Http, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   /**
    * This function is used to create user with coordinate
@@ -28,7 +28,7 @@ export class ProjectService {
    */
   postUser(data: User): Observable<any> {
     return this.http.post(this.userUrl, data, {headers: this.headers})
-      .map((r: Response) => r.json())
+      .map((r: Response) => r)
       .catch(this.handleError);
   }
 
@@ -41,7 +41,7 @@ export class ProjectService {
    */
   putUser(userId: number, data: User): Observable<any> {
     return this.http.put(this.userUrl + '/' + userId, data, {headers: this.headers})
-      .map((r: Response) => r.json())
+      .map((r: Response) => r)
       .catch(this.handleError);
   }
 
@@ -68,7 +68,7 @@ export class ProjectService {
    */
   getAllUser(data: any): Observable<any> {
     return this.http.get(this.userUrl+'/'+data[0]+'/'+data[1])
-      .map((r: Response) => r.json())
+      .map((r: Response) => r)
       .catch(this.handleError);
   }
 

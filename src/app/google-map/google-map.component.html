@@ -1,13 +1,13 @@
 <h1 class="text-center"><i>Check-in yourself</i></h1>
 <div class="block-centered map-block">
 
-  <sebm-google-map [latitude]="coordinate[1]"
+  <agm-map [latitude]="coordinate[1]"
                    [longitude]="coordinate[0]"
                    [mapTypeControl]="true"
                    [zoom]="zoom">
-    <sebm-google-map-marker [latitude]="coordinate[1]" [longitude]="coordinate[0]"></sebm-google-map-marker>
+    <agm-marker [latitude]="coordinate[1]" [longitude]="coordinate[0]"></agm-marker>
 
-  </sebm-google-map>
+  </agm-map>
 </div>
 
 <button type="button" class="btn btn-success btn-sm check-in-button" data-toggle="modal" (click)="openForm()" data-target="#myModal">Check-in Now</button>
